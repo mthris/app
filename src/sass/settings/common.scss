@@ -1,0 +1,32 @@
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  font-size: $primary-font-size;
+  word-wrap: break-word;
+  background: #ad33f3;
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.app-wrapper {
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin-top: 100px;
+}

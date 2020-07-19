@@ -1,0 +1,69 @@
+/* Multi device responsive */
+$breakpoints: (
+  "phone": 25rem, //400px
+  "phone-medium": 30rem, //480px
+  "phone-wide": 35rem, //560px
+  "tablet": 40rem, //640px
+  "tablet-medium": 48rem, //768px
+  "tablet-wide": 64rem, //1024px
+  "desktop": 78rem, //1248px
+);
+
+@mixin breakpoint($point){
+  @if $point == phone {
+    @media only screen and (min-width: 25rem){
+      @content;
+    }
+  }
+  @else if $point == phone-medium {
+    @media only screen and (min-width: 30rem){
+      @content;
+    }
+  }
+  @else if $point == phone-wide {
+    @media only screen and (min-width: 35rem){
+      @content;
+    }
+  }
+  @else if $point == tablet {
+    @media only screen and (min-width: 40rem){
+      @content;
+    }
+  }
+  @else if $point == tablet-medium {
+    @media only screen and (min-width: 48rem){
+      @content;
+    }
+  }
+  @else if $point == tablet-wide {
+    @media only screen and (min-width: 64rem){
+      @content;
+    }
+  }
+  @else if $point == desktop {
+    @media only screen and (min-width: 78rem){
+      @content;
+    }
+  }
+}
+
+/* Default pseudoelement */
+@mixin pseudo($content: '', $display: block){
+  content: $content;
+  display: $display;
+}
+
+/* Placeholder support for browsers */
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+/* Text selection style */
+@mixin selection {
+	::-moz-selection { @content; }
+	::selection { @content; }
+}
