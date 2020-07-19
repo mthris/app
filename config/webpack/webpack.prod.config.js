@@ -9,7 +9,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 export default {
   context: path.resolve(__dirname, '../../src'),
   entry: {
-    example: 'pages/example/index.js'
+    home: 'pages/home/index.js'
   },
   mode: 'production',
   output: {
@@ -40,6 +40,9 @@ export default {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../../'
+            }
           },
           {
             loader: 'css-loader'
@@ -60,18 +63,31 @@ export default {
         ]
       },
       {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'assets/fonts',
+          publicPath: '../fonts'
+        }
+      },
+      {
         test: /\.(png|svg|jpg|gif)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: 'assets/img',
-          publicPath: '../img'
+          outputPath: 'assets/img'
         }
       },
       {
-        test: /\.html$/i,
-        loader: 'html-loader'
-      },
+       test: /\.html$/i,
+       loader: 'html-loader',
+       options: {
+         attributes: {
+           root: path.resolve(__dirname, '../../src/assets/img')
+         }
+       }
+      }
     ]
   },
   plugins: [
@@ -81,13 +97,13 @@ export default {
       chunkFilename: '[name].css'
     }),
     new HtmlWebpackPlugin({
-      filename: 'example.html',
-      template: '../../src/pages/example/example.html',
+      filename: 'home.html',
+      template: 'pages/home/home.html',
       cache: true,
-      chunks: ['example']
+      chunks: ['home']
     }),
     new CopyPlugin([
-      { from: 'assets/img/icons', to: 'assets/img/icons' },
+      { from: 'assets/img/', to: 'assets/img/' },
     ]),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
